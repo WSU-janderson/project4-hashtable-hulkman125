@@ -1,8 +1,11 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/7RAFczHS)
-# Project 4 - HashTable
+time complexity of:
 
-Project description can be found [in the repo](Project4_HashTable.pdf)
+insert() method -(O(n)) lineartime complexity since it goes through each individual bucket until it reaches its desired bucket to add data to.
 
-Place your complexity analysis below.
+remove() method -(O(n)) linear time complexity since it goes through each individual bucket untill it reaches its desired bucket to remove its value from
 
----
+contains() method -(O(n)) linear time complexity because it goes through each individual bucket until it either finds the value in the parameter or it reaches the end.
+
+get() method - (O(n)) constant time complexity because it looks at the specified index to find the value.
+
+operator[] - (O(n)) constant time complexity because it looks at the specifified index to find the value.

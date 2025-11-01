@@ -29,13 +29,14 @@ public:
 
     bool remove(std::string key);
     bool contains(const string& key) const;
-    optional<int> get(const string& key) const;
+    optional<size_t> get(const string& key) const;
     size_t& operator[](const string& key);
     vector<string> keys() const;
     double alpha() const;
     size_t capacity() const;
     size_t size() const;
     friend std::ostream& operator<<(std::ostream& os, const HashTable& hashTable);
+    void increaseCapacity();
 
 };
 #endif

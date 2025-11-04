@@ -36,7 +36,11 @@
 using namespace std;
 
 
-
+//----------------------------------------------------------------
+// HashTable: the default constructor to create a number of buckets
+//    Returns:  void
+//    Parameters: initCapacity (size_t) //number of buckets
+//----------------------------------------------------------------
 HashTable::HashTable(size_t initCapacity) {
     buckets.resize(initCapacity);
 
@@ -49,6 +53,12 @@ HashTable::HashTable(size_t initCapacity) {
     shuffle(offsets.begin(), offsets.end(), g);
 
 }
+
+//----------------------------------------------------------------
+// insert: inseeting a value into a bucket
+//    Returns:  bool
+//    Parameters: key (string) (the string used to create a hash), value (size_t) (number to be stored)
+//----------------------------------------------------------------
 
 bool HashTable::insert(string key, size_t value) {
     if (contains(key)) {
@@ -98,6 +108,11 @@ bool HashTable::insert(string key, size_t value) {
     }
 }
 
+//----------------------------------------------------------------
+// remove: eliminating the value in a bucket
+//    Returns:  bool
+//    Parameters: key (string) - the string used to find the value to be removed
+//----------------------------------------------------------------
 
 bool HashTable::remove(std::string key) {
 
@@ -126,6 +141,12 @@ bool HashTable::remove(std::string key) {
     return false;
 }
 
+//----------------------------------------------------------------
+// contains: determining if the key is in the HashTable
+//    Returns:  bool
+//    Parameters: ke (string&) - the pointer to the key
+//----------------------------------------------------------------
+
 bool HashTable::contains(const string& key) const {
     std::hash<string> hash;
     size_t hashValue = hash(key);
@@ -140,6 +161,12 @@ bool HashTable::contains(const string& key) const {
     }
     return false;
 }
+
+//----------------------------------------------------------------
+// get: returning the value in a bucket
+//    Returns:  optional<size_t>
+//    Parameters: key (string&) - the pointer to the key
+//----------------------------------------------------------------
 
 std::optional<size_t> HashTable::get(const string& key) const {
     std::hash<string> hash;
@@ -159,6 +186,12 @@ std::optional<size_t> HashTable::get(const string& key) const {
     }
     return nullopt;
 }
+
+//----------------------------------------------------------------
+// operator[]: returning the value at an index
+//    Returns:  size_t
+//    Parameters:  key (string&) - the number of hitpoints to subtract
+//----------------------------------------------------------------
 
 size_t& HashTable::operator[](const string& key) {
     std::hash<string> hash;
@@ -180,6 +213,12 @@ size_t& HashTable::operator[](const string& key) {
     //return buckets.at(home).value;
 }
 
+//----------------------------------------------------------------
+// keys(): returning the vector of keys
+//    Returns:  vector<string>
+//    Parameters: none
+//----------------------------------------------------------------
+
 std::vector<string> HashTable::keys() const {
     std::vector<string> keys;
 
@@ -191,17 +230,41 @@ std::vector<string> HashTable::keys() const {
     return keys;
 }
 
+//----------------------------------------------------------------
+// alpha: returns size/capacity
+//    Returns:  double
+//    Parameters: none
+//----------------------------------------------------------------
+
 double HashTable::alpha() const {
     return static_cast<double>(size())/ static_cast<double>(capacity());
 }
+
+//----------------------------------------------------------------
+// capacity: damaging the oponent by lowering thier hitpoints
+//    Returns:  size_t
+//    Parameters: none
+//----------------------------------------------------------------
 
 size_t HashTable::capacity() const {
     return buckets.size();
 }
 
+//----------------------------------------------------------------
+// size(): number of filled buckets
+//    Returns:  size_t
+//    Parameters: none
+//----------------------------------------------------------------
+
 size_t HashTable::size() const {
     return sizeOfSequence;
 }
+
+//----------------------------------------------------------------
+// operator<<: outputs the string of keys and value
+//    Returns:  ostream&
+//    Parameters:  os (ostream&) -output, table (HashTable&) -The Hashtable object 
+//----------------------------------------------------------------
 
 ostream& operator<<(ostream& os, const HashTable& table) {
     for (int x = 0; x < table.capacity(); x++) {
@@ -211,6 +274,12 @@ ostream& operator<<(ostream& os, const HashTable& table) {
     }
     return os;
 }
+
+//----------------------------------------------------------------
+// increaseCapacity: increasing the number of buckets
+//    Returns:  void
+//    Parameters:  none
+//----------------------------------------------------------------
 
 void HashTable:: increaseCapacity() {
     vector<HashTableBucket> oldbuckets = buckets;
